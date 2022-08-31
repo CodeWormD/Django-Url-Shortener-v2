@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
 from .forms import ShortForm
+from .models import Link
+
 
 class ShortenerView(View):
     
@@ -13,7 +15,17 @@ class ShortenerView(View):
         return render(request, 'shortener.html', context)
     
     def post(self, request, *args, **kwargs):
-        return HttpResponse("Hello World")
+        form = ShortForm()
+        url = request.POST.get('url', None)
+        obj = Link.create(link=url)
+        obj.save()
+        context = {
+            'form': form,
+            'url': obj.url,
+            'shorturl': request.get_host() + '/' + obj.shorturl
+        }
+        
+        return render(request, 'shortener.html', context)
 
 
 class RedirectUrl(View):
