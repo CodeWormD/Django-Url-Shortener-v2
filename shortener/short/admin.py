@@ -7,5 +7,7 @@ from .models import Link
 class LinkAdmin(admin.ModelAdmin):
     list_display = (
         'url',
-        'shorturl'
+        'shorturl',
+        'date',
+        'count'
     )
