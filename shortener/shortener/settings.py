@@ -1,11 +1,21 @@
 import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-u5ld8)op9bicxw9tqnv-ta=$iv2#-@po5x^_nyozi1_^_#m-y@'
-DEBUG = True
+from os.path import join, dirname
 
-ALLOWED_HOSTS = []
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env.dev')
+load_dotenv(dotenv_path)
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = bool(int(os.getenv("DEBUG", default=1)))
+
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", default=['*']).split(' ')
+print(ALLOWED_HOSTS)
+print(SECRET_KEY)
 
 
 # Application definition

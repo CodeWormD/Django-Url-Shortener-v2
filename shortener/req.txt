@@ -3,3 +3,4 @@ Django==4.1
 isort==5.10.1
 sqlparse==0.4.2
 tzdata==2022.2
+python-dotenv==0.20.0

@@ -25,7 +25,7 @@ class ShortenerView(View):
             context = {
                     'form': form,
                     'url': obj.url,
-                    'shorturl': request.get_host() + '/' + obj.shorturl
+                    'shorturl': request.get_host() + '/url/' + obj.shorturl
                 }
             return render(request, 'shortener.html', context)
 

@@ -6,5 +6,5 @@ app_name = 'short'
 
 urlpatterns = [
     path('', views.ShortenerView.as_view(), name='makeshort'),
-    path('<slug:short>/', views.RedirectUrl.as_view(), name='redirect')
+    path('url/<slug:short>/', views.RedirectUrl.as_view(), name='redirect')
 ]
